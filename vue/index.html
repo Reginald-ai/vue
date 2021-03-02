@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/vue.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <navbar class="navbar">
+            <img class="header__logo" src="/img/logo/vuejs-seeklogo.com.svg" alt="">
+            <ul class="header__menu">
+                <li><a href="Vue_1">Vue_1</a></li>
+                <li><a href="Vue_2">Vue_2</a></li>
+                <li><a href="Vue_3">Vue_3</a></li>
+                <li><a href="Vue_4">Vue_4</a></li>
+            </ul>
+        </navbar>
+    </header>
+
+
+    <section>
+        <div id="app">
+            <div class="grid">
+                <div v-for='element in info_set' class="card">
+                    <img class="bg-img" v-bind:src='element.url' alt="">
+                    <h5 class="card-title">{{element.title}}</h5>
+                    <p class="card-text">{{element.content}}</p>
+                    <span class="category">{{element.category}}</span>
+            </div>
+            </div>  
+          
+            
+        </div>
+
+    </section>
+
+
+
+    <section>
+        <div id="apps_1">
+            <div class="card">
+                <p>Shopping Calculator</p>
+                <calc label='Price' v-on:input='price=arguments[0]'  ></calc>
+                <calc label='Shipping' v-on:input='shipping=arguments[0]' ></calc>
+                <calc label='Discount'  v-on:input='discount=arguments[0]' ></calc>
+                <p><span>Total Cost:</span>{{total}}</p>
+            </div>
+        
+        </div>
+
+        <template id="temps_1">
+            <div>
+                <label class="paddings" for="">{{label}}</label>
+                <br>
+                <input v-bind:value='value' v-on:input='send($event.target.value)' class="input" type="text" name="" id="">
+            </div>
+        </template>
+
+    </section>
+
+
+
+    <script>
+var comp_calc = Vue.component('calc',{
+    template:'#temps_1',
+    data:function(){
+        return{}
+    },
+    props:['label','value'],
+    methods: {
+        send:function(v){
+            this.$emit('input',v)
+        }
+    },
+})
+
+
+var calcu = new Vue({
+    el:'#apps_1',
+    data:{
+        price:0,
+        shipping:0,
+        discount:0,
+    },
+    computed:{
+        total:function(){
+            this.price=Number(this.price)
+            this.shipping=Number(this.shipping)
+            this.discount=Number(this.discount)
+            return this.price + this.shipping - this.discount
+        }
+    }
+})
+
+
+
+
+
+
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                info_set: [
+                    {
+                    url: "/img/1.png",
+                    title: 'Red Planet',
+                    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dicta tempore earum?',
+                    category:'science'
+                    },
+                    {
+                    url: "/img/2.png",
+                    title: 'Blue Planet',
+                    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dicta tempore earum?',
+                    category:'English'
+                    },
+                    {
+                    url: "/img/3.png",
+                    title: 'Green Planet',
+                    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dicta tempore earum?',
+                    category:'Math'
+                    },
+                    {
+                    url: "/img/4.png",
+                    title: 'Brown Planet',
+                    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dicta tempore earum?',
+                    category:'Esp'
+                    },
+                    {
+                    url: "/img/5.png",
+                    title: 'Orange Planet',
+                    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dicta tempore earum?',
+                    category:'ICT'
+                    },
+                    {
+                    url: "/img/6.png",
+                    title: 'Pink Planet',
+                    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dicta tempore earum?',
+                    category:'Research'
+                    },
+
+                
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+@import "var";
+
+
+
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,4fr));
+}
+.card{
+    border: 1px solid black;
+    display: inline-block;
+    text-align: center;
+    padding: 1em;
+    
+    margin-left: 15px;
+    margin-top: 15px;
+    .bg-img:nth-child(odd){
+        background: $gray;
+    
+    }
+    .bg-img:nth-child(even){
+        background: $maron;
+    
+    }
+    
+
+}
